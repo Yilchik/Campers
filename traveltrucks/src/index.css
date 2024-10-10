@@ -28,24 +28,35 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: #f7f7f7;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border-radius: 200px;
+  background: #e44848;
+  display: flex;
+  width: 200px;
+  padding: 16px 60px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  font-size: 16px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #d84343;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -60,6 +71,6 @@ button:focus-visible {
     color: #ffc531;
   }
   button {
-    background-color: #f9f9f9;
+    background: #e44848;
   }
 }
