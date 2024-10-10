@@ -54,7 +54,7 @@ button {
 }
 
 button:hover {
-  border-color: #d84343;
+  background: #d84343;
 }
 
 button:focus,
@@ -69,8 +69,5 @@ button:focus-visible {
   }
   a:hover {
     color: #ffc531;
-  }
-  button {
-    background: #e44848;
   }
 }
