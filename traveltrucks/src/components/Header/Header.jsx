@@ -8,19 +8,21 @@ const buildLinkClass = ({ isActive }) => {
 };
 
 const Header = () => (
-  <nav className={css.nav}>
-    <NavLink to="/">
-      <img src={logo} alt="Logo" className={css.logo} />
-    </NavLink>
-    <div className={css.navigation}>
-      <NavLink to="/" className={buildLinkClass}>
-        Home
+  <div className={css.header}>
+    <nav className={css.nav}>
+      <NavLink to="/">
+        <img src={logo} alt="Logo" className={css.logo} />
       </NavLink>
-      <NavLink to="/movies" className={buildLinkClass}>
-        Catalog
-      </NavLink>
-    </div>
-  </nav>
+      <div className={css.navigation}>
+        <NavLink to="/" className={buildLinkClass}>
+          Home
+        </NavLink>
+        <NavLink to="/movies" className={buildLinkClass}>
+          Catalog
+        </NavLink>
+      </div>
+    </nav>
+  </div>
 );
 
 export default Header;
