@@ -82,8 +82,17 @@
   border: 1px solid #dadde1;
 }
 
-.filtersBtn:hover {
-  border: 1px solid #e44848;
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkboxInput {
+  margin-right: 8px;
+  cursor: pointer;
 }
 
 .icon {
