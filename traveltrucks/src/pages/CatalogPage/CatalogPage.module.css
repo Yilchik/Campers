@@ -80,19 +80,29 @@
   gap: 8px;
   border-radius: 12px;
   border: 1px solid #dadde1;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .checkboxLabel {
   display: flex;
   align-items: center;
+  flex-direction: column;
   gap: 8px;
   cursor: pointer;
   width: 100%;
 }
 
 .checkboxInput {
-  margin-right: 8px;
-  cursor: pointer;
+  display: none;
+}
+
+.checkboxInput:checked + .filtersBtn {
+  border-color: #e44848;
+}
+
+.filtersBtn:hover {
+  border-color: #e44848;
 }
 
 .icon {

@@ -46,6 +46,19 @@ const CatalogPage = () => {
     dispatch(setFilters(localFilters));
   };
 
+  useEffect(() => {
+    document.querySelectorAll(`.${css.filtersBtn}`).forEach((li) => {
+      const input = li.querySelector(`.${css.checkboxInput}`);
+      if (input) {
+        if (input.checked) {
+          li.style.borderColor = "#e44848";
+        } else {
+          li.style.borderColor = "#dadde1";
+        }
+      }
+    });
+  }, [localFilters]);
+
   if (status === "loading") return <div>Loading...</div>;
   if (status === "failed") return <div>Error: {error}</div>;
   if (status === "succeeded" && campers.length === 0) {
