@@ -4,46 +4,32 @@ import { fetchCampers } from "./operations";
 const campersSlice = createSlice({
   name: "campers",
   initialState: {
-    campers: [],
+    items: [],
     favorites: [],
     filters: {
       location: "",
-      as: false,
+      vehicleType: "",
+      ac: false,
       automatic: false,
       kitchen: false,
       tv: false,
       bathroom: false,
-      van: false,
-      fullyIntegrated: false,
-      alcove: false,
     },
     status: "idle",
     error: null,
   },
   reducers: {
-    toggleFavorite: (state, action) => {
-      const camperId = action.payload;
-      if (state.favorites.includes(camperId)) {
-        state.favorites = state.favorites.filter((id) => id !== camperId);
-      } else {
-        state.favorites.push(camperId);
-      }
-    },
     setFilters: (state, action) => {
-      state.filters = { ...state.filters, ...action.payload };
+      state.filters = action.payload;
     },
-    resetFilters: (state) => {
-      state.filters = {
-        location: "",
-        as: false,
-        automatic: false,
-        kitchen: false,
-        tv: false,
-        bathroom: false,
-        van: false,
-        fullyIntegrated: false,
-        alcove: false,
-      };
+
+    toggleFavorite: (state, action) => {
+      const id = action.payload;
+      if (state.favorites.includes(id)) {
+        state.favorites = state.favorites.filter((favId) => favId !== id);
+      } else {
+        state.favorites.push(id);
+      }
     },
   },
   extraReducers: (builder) => {
@@ -53,7 +39,7 @@ const campersSlice = createSlice({
       })
       .addCase(fetchCampers.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.campers = action.payload;
+        state.items = action.payload;
       })
       .addCase(fetchCampers.rejected, (state, action) => {
         state.status = "failed";

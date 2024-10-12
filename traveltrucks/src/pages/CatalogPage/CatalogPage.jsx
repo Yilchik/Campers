@@ -1,8 +1,11 @@
 import Header from "../../components/Header/Header";
+import CampersList from "../../components/CampersList/CampersList";
 import css from "./CatalogPage.module.css";
+
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFilters, toggleFavorite } from "../../redux/slice";
+import { setFilters } from "../../redux/slice";
+import { fetchCampers } from "../../redux/operations";
 
 import { HiOutlineMap } from "react-icons/hi";
 import { FiWind } from "react-icons/fi";
@@ -13,17 +16,21 @@ import { BsDroplet } from "react-icons/bs";
 import { BsGrid1X2 } from "react-icons/bs";
 import { IoGridOutline } from "react-icons/io5";
 import { BsGrid3X3Gap } from "react-icons/bs";
-import { fetchCampers } from "../../redux/operations";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
-  const { campers, favorites, filters, status, error } = useSelector(
-    (state) => state.campers
-  );
+  const {
+    items: campers = [],
+    favorites,
+    filters,
+    status,
+    error,
+  } = useSelector((state) => state.campers || {});
 
   const [localFilters, setLocalFilters] = useState(filters);
 
   useEffect(() => {
+    console.log("Filters before fetching campers:", filters);
     dispatch(fetchCampers(filters));
   }, [filters, dispatch]);
 
@@ -39,12 +46,12 @@ const CatalogPage = () => {
     dispatch(setFilters(localFilters));
   };
 
-  const handleFavoriteToggle = (id) => {
-    dispatch(toggleFavorite(id));
-  };
-
   if (status === "loading") return <div>Loading...</div>;
   if (status === "failed") return <div>Error: {error}</div>;
+  if (status === "succeeded" && campers.length === 0) {
+    return <div>No campers available</div>;
+  }
+
   return (
     <div>
       <Header />
@@ -148,8 +155,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="radio"
-                      checked
+                      name="vehicleType"
+                      value="van"
+                      checked={localFilters.vehicleType === "van"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -161,7 +169,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="radio"
+                      name="vehicleType"
+                      value="fullyIntegrated"
+                      checked={localFilters.vehicleType === "fullyIntegrated"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -173,7 +183,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="radio"
+                      name="vehicleType"
+                      value="alcove"
+                      checked={localFilters.vehicleType === "alcove"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -187,20 +199,7 @@ const CatalogPage = () => {
           <button onClick={handleApplyFilters} className={css.btn}>
             Search
           </button>
-          <div>
-            {campers.map((camper) => (
-              <div key={camper.id}>
-                <h2>{camper.name}</h2>
-                <p>Location: {camper.location}</p>
-                <p>Type: {camper.type}</p>
-                <button onClick={() => handleFavoriteToggle(camper.id)}>
-                  {favorites.includes(camper.id)
-                    ? "Remove from Favorites"
-                    : "Add to Favorites"}
-                </button>
-              </div>
-            ))}
-          </div>
+          <CampersList campers={campers} favorites={favorites} />
         </div>
       </div>
     </div>
