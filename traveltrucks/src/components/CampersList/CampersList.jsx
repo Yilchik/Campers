@@ -44,7 +44,7 @@ const CampersList = ({ campers }) => {
   const [visibleCount, setVisibleCount] = useState(4);
 
   const formIcons = {
-    van: <BsGrid1X2 className={css.iconBadge} />,
+    panelTruck: <BsGrid1X2 className={css.iconBadge} />,
     fullyIntegrated: <IoGridOutline className={css.iconBadge} />,
     alcove: <BsGrid3X3Gap className={css.iconBadge} />,
   };

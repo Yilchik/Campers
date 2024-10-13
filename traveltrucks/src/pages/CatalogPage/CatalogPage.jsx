@@ -59,6 +59,18 @@ const CatalogPage = () => {
         [name]: type === "checkbox" ? checked : value,
       }));
     }
+
+    if (type === "radio") {
+      setLocalFilters((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    } else if (type === "checkbox") {
+      setLocalFilters((prev) => ({
+        ...prev,
+        [name]: checked,
+      }));
+    }
   };
 
   const handleApplyFilters = () => {
@@ -204,13 +216,13 @@ const CatalogPage = () => {
                     <input
                       type="radio"
                       name="form"
-                      value="van"
-                      checked={localFilters.form === "van"}
+                      value="panelTruck"
+                      checked={localFilters.form === "panelTruck"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
                     <BsGrid1X2 className={css.icon} />
-                    <p className={css.textBtn}>Van</p>
+                    <p className={css.textBtn}>Panel Truck</p>
                   </label>
                 </li>
                 <li className={css.filtersBtn}>
