@@ -8,7 +8,7 @@ const campersSlice = createSlice({
     favorites: [],
     filters: {
       location: "",
-      vehicleType: "",
+      form: "",
       ac: false,
       automatic: false,
       kitchen: false,

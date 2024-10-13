@@ -2,7 +2,10 @@
 // import { toggleFavorite } from "../../redux/slice";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+
 import css from "./CampersList.module.css";
+import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
 import {
   BsCupHot,
@@ -38,6 +41,7 @@ const CampersList = ({ campers }) => {
   if (!Array.isArray(campers) || campers.length === 0) {
     return <div>No campers found.</div>;
   }
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const formIcons = {
     van: <BsGrid1X2 className={css.iconBadge} />,
@@ -45,10 +49,14 @@ const CampersList = ({ campers }) => {
     alcove: <BsGrid3X3Gap className={css.iconBadge} />,
   };
 
+  const handleLoadMore = () => {
+    setVisibleCount((prevCount) => prevCount + 4);
+  };
+
   return (
     <div>
       <ul className={css.list}>
-        {campers.map((camper) => (
+        {campers.slice(0, visibleCount).map((camper) => (
           <li key={camper.id} className={css.card}>
             <div>
               <img
@@ -86,7 +94,7 @@ const CampersList = ({ campers }) => {
                     <p className={css.textBtn}>{camper.transmission}</p>
                   </div>
                 )}
-                {camper.AC && (
+                {camper.ac && (
                   <div className={css.badge}>
                     <FiWind className={css.icon} />
                     <p className={css.textBtn}>AC</p>
@@ -104,7 +112,7 @@ const CampersList = ({ campers }) => {
                     <p className={css.textBtn}>Bathroom</p>
                   </div>
                 )}
-                {camper.TV && (
+                {camper.tv && (
                   <div className={css.badge}>
                     <HiOutlineTv className={css.iconBadge} />
                     <p className={css.textBtn}>TV</p>
@@ -153,7 +161,6 @@ const CampersList = ({ campers }) => {
                   </div>
                 )}
               </div>
-
               <Link to={`/catalog/${camper.id}`}>
                 <button className={css.showMoreBtn}>Show more</button>
               </Link>
@@ -161,6 +168,9 @@ const CampersList = ({ campers }) => {
           </li>
         ))}
       </ul>
+      {visibleCount < campers.length && (
+        <LoadMoreBtn onClick={handleLoadMore} />
+      )}
     </div>
   );
 };

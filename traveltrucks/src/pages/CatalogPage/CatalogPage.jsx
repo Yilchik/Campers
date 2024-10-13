@@ -9,16 +9,19 @@ import { fetchCampers } from "../../redux/operations";
 
 import { HiOutlineMap } from "react-icons/hi";
 import { FiWind } from "react-icons/fi";
-import { BsDiagram3 } from "react-icons/bs";
-import { BsCupHot } from "react-icons/bs";
+import {
+  BsDiagram3,
+  BsCupHot,
+  BsDroplet,
+  BsGrid1X2,
+  BsGrid3X3Gap,
+} from "react-icons/bs";
 import { HiOutlineTv } from "react-icons/hi2";
-import { BsDroplet } from "react-icons/bs";
-import { BsGrid1X2 } from "react-icons/bs";
 import { IoGridOutline } from "react-icons/io5";
-import { BsGrid3X3Gap } from "react-icons/bs";
 
 const CatalogPage = () => {
   const dispatch = useDispatch();
+
   const {
     items: campers = [],
     favorites,
@@ -27,7 +30,15 @@ const CatalogPage = () => {
     error,
   } = useSelector((state) => state.campers || {});
 
-  const [localFilters, setLocalFilters] = useState(filters);
+  const [localFilters, setLocalFilters] = useState({
+    location: "",
+    form: "",
+    ac: false,
+    automatic: false,
+    kitchen: false,
+    tv: false,
+    bathroom: false,
+  });
 
   useEffect(() => {
     console.log("Filters before fetching campers:", filters);
@@ -97,8 +108,8 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="checkbox"
-                      name="as"
-                      checked={localFilters.as}
+                      name="ac"
+                      checked={localFilters.ac}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -168,9 +179,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="vehicleType"
+                      name="form"
                       value="van"
-                      checked={localFilters.vehicleType === "van"}
+                      checked={localFilters.form === "van"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -182,9 +193,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="vehicleType"
+                      name="form"
                       value="fullyIntegrated"
-                      checked={localFilters.vehicleType === "fullyIntegrated"}
+                      checked={localFilters.form === "fullyIntegrated"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />
@@ -196,9 +207,9 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="radio"
-                      name="vehicleType"
+                      name="form"
                       value="alcove"
-                      checked={localFilters.vehicleType === "alcove"}
+                      checked={localFilters.form === "alcove"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />

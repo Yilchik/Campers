@@ -6,7 +6,7 @@ export const fetchCampers = createAsyncThunk(
   async (filters) => {
     const queryParams = {
       location: filters.location || "",
-      vehicleType: filters.vehicleType || "",
+      form: filters.form || "",
       ac: filters.ac ? "true" : undefined,
       automatic: filters.automatic ? "true" : undefined,
       kitchen: filters.kitchen ? "true" : undefined,
