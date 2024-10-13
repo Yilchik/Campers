@@ -1,6 +1,7 @@
 import Header from "../../components/Header/Header";
 import CampersList from "../../components/CampersList/CampersList";
 import Loader from "../../components/Loader/Loader";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import css from "./CatalogPage.module.css";
 
 import { useEffect, useState } from "react";
@@ -28,7 +29,6 @@ const CatalogPage = () => {
     favorites,
     filters,
     status,
-    error,
   } = useSelector((state) => state.campers || {});
 
   const [localFilters, setLocalFilters] = useState({
@@ -96,7 +96,10 @@ const CatalogPage = () => {
   }, [localFilters]);
 
   if (status === "loading") return <Loader />;
-  if (status === "failed") return <div>Error: {error}</div>;
+  if (status === "failed")
+    return (
+      <ErrorMessage message="Whoops, something went wrong! Please try reloading this page!" />
+    );
   if (status === "succeeded" && campers.length === 0) {
     return <div>No campers available</div>;
   }
