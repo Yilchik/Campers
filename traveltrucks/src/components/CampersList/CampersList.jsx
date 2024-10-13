@@ -2,10 +2,11 @@
 // import { toggleFavorite } from "../../redux/slice";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import css from "./CampersList.module.css";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
+import Loader from "../Loader/Loader";
 
 import {
   BsCupHot,
@@ -28,20 +29,27 @@ import { PiGasCanThin } from "react-icons/pi";
 import { MdOutlineWater } from "react-icons/md";
 
 const CampersList = ({ campers }) => {
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
+  const [visibleCount, setVisibleCount] = useState(4);
   // const dispatch = useDispatch();
 
   // const handleFavoriteToggle = (id) => {
   //   dispatch(toggleFavorite(id));
   // };
-  if (!campers) {
-    return <div>Loading campers...</div>;
+  useEffect(() => {
+    if (campers) {
+      setLoading(false);
+    }
+  }, [campers]);
+
+  if (loading) {
+    return <Loader />;
   }
 
   if (!Array.isArray(campers) || campers.length === 0) {
     return <div>No campers found.</div>;
   }
-  const [visibleCount, setVisibleCount] = useState(4);
 
   const formIcons = {
     panelTruck: <BsGrid1X2 className={css.iconBadge} />,

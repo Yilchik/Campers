@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import CampersList from "../../components/CampersList/CampersList";
+import Loader from "../../components/Loader/Loader";
 import css from "./CatalogPage.module.css";
 
 import { useEffect, useState } from "react";
@@ -94,7 +95,7 @@ const CatalogPage = () => {
     });
   }, [localFilters]);
 
-  if (status === "loading") return <div>Loading...</div>;
+  if (status === "loading") return <Loader />;
   if (status === "failed") return <div>Error: {error}</div>;
   if (status === "succeeded" && campers.length === 0) {
     return <div>No campers available</div>;
