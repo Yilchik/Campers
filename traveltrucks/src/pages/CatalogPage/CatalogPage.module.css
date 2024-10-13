@@ -1,6 +1,7 @@
 .container {
-  display: block;
+  display: flex;
   padding: 48px 64px 52px;
+  gap: 64px;
 }
 
 .form {

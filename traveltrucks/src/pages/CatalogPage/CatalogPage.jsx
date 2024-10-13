@@ -212,8 +212,8 @@ const CatalogPage = () => {
           <button onClick={handleApplyFilters} className={css.btn}>
             Search
           </button>
-          <CampersList campers={campers.items || []} />
         </div>
+        <CampersList campers={campers.items || []} />
       </div>
     </div>
   );
