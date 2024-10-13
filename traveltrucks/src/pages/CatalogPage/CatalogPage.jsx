@@ -212,7 +212,7 @@ const CatalogPage = () => {
           <button onClick={handleApplyFilters} className={css.btn}>
             Search
           </button>
-          <CampersList campers={campers} favorites={favorites} />
+          <CampersList campers={campers.items || []} />
         </div>
       </div>
     </div>

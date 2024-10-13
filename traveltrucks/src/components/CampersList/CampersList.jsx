@@ -1,30 +1,40 @@
-import { useDispatch } from "react-redux";
-import { toggleFavorite } from "../../redux/slice";
+// import { useDispatch } from "react-redux";
+// import { toggleFavorite } from "../../redux/slice";
+import PropTypes from "prop-types";
+import { Link, useLocation } from "react-router-dom";
+import css from "./CampersList.module.css";
 
-const CampersList = ({ campers, favorites }) => {
-  const dispatch = useDispatch();
+const CampersList = ({ campers }) => {
+  const location = useLocation();
+  // const dispatch = useDispatch();
 
-  const handleFavoriteToggle = (id) => {
-    dispatch(toggleFavorite(id));
-  };
-  <div>
-    {campers && campers.length > 0 ? (
-      campers.map((camper) => (
-        <div key={camper.id}>
-          <h2>{camper.name}</h2>
-          <p>Location: {camper.location}</p>
-          <p>Type: {camper.form}</p>
-          <button onClick={() => handleFavoriteToggle(camper.id)}>
-            {favorites.includes(camper.id)
-              ? "Remove from Favorites"
-              : "Add to Favorites"}
-          </button>
-        </div>
-      ))
-    ) : (
-      <div>No campers available</div>
-    )}
-  </div>;
+  // const handleFavoriteToggle = (id) => {
+  //   dispatch(toggleFavorite(id));
+  // };
+  if (!campers) {
+    return <div>Loading campers...</div>;
+  }
+
+  if (!Array.isArray(campers) || campers.length === 0) {
+    return <div>No campers found.</div>;
+  }
+
+  return (
+    <div>
+      <ul className={css.list}>
+        {campers.map((camper) => (
+          <li key={camper.id}>
+            <Link to={`/campers/${camper.id}`} state={location}>
+              {camper.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+CampersList.propTypes = {
+  campers: PropTypes.array.isRequired,
 };
 
 export default CampersList;

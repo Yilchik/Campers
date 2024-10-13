@@ -4,7 +4,7 @@ import { fetchCampers } from "./operations";
 const campersSlice = createSlice({
   name: "campers",
   initialState: {
-    items: [],
+    campers: [],
     favorites: [],
     filters: {
       location: "",
