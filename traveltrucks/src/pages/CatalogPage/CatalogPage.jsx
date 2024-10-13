@@ -34,7 +34,7 @@ const CatalogPage = () => {
     location: "",
     form: "",
     ac: false,
-    automatic: false,
+    transmission: "",
     kitchen: false,
     tv: false,
     bathroom: false,
@@ -47,14 +47,38 @@ const CatalogPage = () => {
 
   const handleFilterChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setLocalFilters((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
+
+    if (name === "transmission") {
+      setLocalFilters((prev) => ({
+        ...prev,
+        transmission: checked ? "automatic" : "",
+      }));
+    } else {
+      setLocalFilters((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    }
   };
 
   const handleApplyFilters = () => {
-    dispatch(setFilters(localFilters));
+    dispatch(setFilters({}));
+
+    const cleanedFilters = Object.keys(localFilters)
+      .filter((key) => {
+        if (key === "transmission") {
+          return localFilters.transmission === "automatic";
+        }
+        return localFilters[key] !== "" && localFilters[key] !== false;
+      })
+      .reduce((obj, key) => {
+        obj[key] = localFilters[key] === true ? 1 : localFilters[key];
+        return obj;
+      }, {});
+
+    console.log("Cleaned Filters:", cleanedFilters);
+    dispatch(setFilters(cleanedFilters));
+    dispatch(fetchCampers(cleanedFilters));
   };
 
   useEffect(() => {
@@ -121,8 +145,8 @@ const CatalogPage = () => {
                   <label className={css.checkboxLabel}>
                     <input
                       type="checkbox"
-                      name="automatic"
-                      checked={localFilters.automatic}
+                      name="transmission"
+                      checked={localFilters.transmission === "automatic"}
                       onChange={handleFilterChange}
                       className={css.checkboxInput}
                     />

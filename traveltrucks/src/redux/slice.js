@@ -9,8 +9,8 @@ const campersSlice = createSlice({
     filters: {
       location: "",
       form: "",
+      transmission: "",
       ac: false,
-      automatic: false,
       kitchen: false,
       tv: false,
       bathroom: false,
