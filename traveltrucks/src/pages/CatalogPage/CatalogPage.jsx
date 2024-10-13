@@ -59,18 +59,6 @@ const CatalogPage = () => {
         [name]: type === "checkbox" ? checked : value,
       }));
     }
-
-    if (type === "radio") {
-      setLocalFilters((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    } else if (type === "checkbox") {
-      setLocalFilters((prev) => ({
-        ...prev,
-        [name]: checked,
-      }));
-    }
   };
 
   const handleApplyFilters = () => {
