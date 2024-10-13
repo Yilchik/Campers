@@ -8,14 +8,21 @@ import {
   BsCupHot,
   BsDiagram3,
   BsDroplet,
+  BsGrid1X2,
+  BsGrid3X3Gap,
   BsSuitHeart,
   BsUiRadios,
 } from "react-icons/bs";
-import { FaGasPump } from "react-icons/fa6";
+import { TbGasStation } from "react-icons/tb";
 import { FaStar } from "react-icons/fa";
 import { HiOutlineMap } from "react-icons/hi";
 import { FiWind } from "react-icons/fi";
 import { HiOutlineTv } from "react-icons/hi2";
+import { IoGridOutline } from "react-icons/io5";
+import { LuMicrowave } from "react-icons/lu";
+import { CgSmartHomeRefrigerator } from "react-icons/cg";
+import { PiGasCanThin } from "react-icons/pi";
+import { MdOutlineWater } from "react-icons/md";
 
 const CampersList = ({ campers }) => {
   const location = useLocation();
@@ -31,6 +38,12 @@ const CampersList = ({ campers }) => {
   if (!Array.isArray(campers) || campers.length === 0) {
     return <div>No campers found.</div>;
   }
+
+  const formIcons = {
+    van: <BsGrid1X2 className={css.iconBadge} />,
+    fullyIntegrated: <IoGridOutline className={css.iconBadge} />,
+    alcove: <BsGrid3X3Gap className={css.iconBadge} />,
+  };
 
   return (
     <div>
@@ -103,34 +116,46 @@ const CampersList = ({ campers }) => {
                     <p className={css.textBtn}>Radio</p>
                   </div>
                 )}
-                {/* {camper.refrigerator && (
+                {camper.form && (
                   <div className={css.badge}>
-                    <FiFridg className={css.iconBadge} />
-                    <p className={css.textBtn}>Refrigerator</p>
+                    {formIcons[camper.form]}
+                    <p className={css.textBtn}>{camper.form}</p>
                   </div>
-                )} */}
-                {/* {camper.microwave && (
+                )}
+                {camper.microwave && (
                   <div className={css.badge}>
-                    <FiMicrowave className={css.iconBadge} />
+                    <LuMicrowave className={css.iconBadge} />
                     <p className={css.textBtn}>Microwave</p>
                   </div>
-                )} */}
+                )}
                 {camper.engine && (
                   <div className={css.badge}>
-                    <FaGasPump className={css.iconBadge} />
+                    <TbGasStation className={css.iconBadge} />
                     <p className={css.textBtn}>{camper.engine}</p>
                   </div>
                 )}
-                {/* {camper.water && (
+                {camper.refrigerator && (
                   <div className={css.badge}>
-                    <FiDroplet className={css.iconBadge} />
+                    <CgSmartHomeRefrigerator className={css.iconBadge} />
+                    <p className={css.textBtn}>Refrigerator</p>
+                  </div>
+                )}
+                {camper.gas && (
+                  <div className={css.badge}>
+                    <PiGasCanThin className={css.iconBadge} />
+                    <p className={css.textBtn}>Gas</p>
+                  </div>
+                )}
+                {camper.water && (
+                  <div className={css.badge}>
+                    <MdOutlineWater className={css.iconBadge} />
                     <p className={css.textBtn}>Water</p>
                   </div>
-                )} */}
+                )}
               </div>
 
               <Link to={`/catalog/${camper.id}`}>
-                <button>Show more</button>
+                <button className={css.showMoreBtn}>Show more</button>
               </Link>
             </div>
           </li>

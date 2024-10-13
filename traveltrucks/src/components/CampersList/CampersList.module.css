@@ -99,3 +99,7 @@
   background: #f2f4f7;
   mix-blend-mode: multiply;
 }
+.showMoreBtn {
+  width: 166px;
+  padding: 16px 16px;
+}
