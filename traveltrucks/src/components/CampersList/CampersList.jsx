@@ -1,5 +1,3 @@
-// import { useDispatch } from "react-redux";
-// import { toggleFavorite } from "../../redux/slice";
 import PropTypes from "prop-types";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -28,15 +26,11 @@ import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { PiGasCanThin } from "react-icons/pi";
 import { MdOutlineWater } from "react-icons/md";
 
-const CampersList = ({ campers }) => {
+const CampersList = ({ campers, favorites, toggleFavorite }) => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const [visibleCount, setVisibleCount] = useState(4);
-  // const dispatch = useDispatch();
 
-  // const handleFavoriteToggle = (id) => {
-  //   dispatch(toggleFavorite(id));
-  // };
   useEffect(() => {
     if (campers) {
       setLoading(false);
@@ -79,7 +73,18 @@ const CampersList = ({ campers }) => {
                   <h3>{camper.name}</h3>
                   <div className={css.price}>
                     <h3>Price: €{camper.price.toFixed(2)}</h3>
-                    <BsSuitHeart />
+                    <div
+                      className={css.favoriteIcon}
+                      onClick={() => toggleFavorite(camper.id)}
+                    >
+                      <BsSuitHeart
+                        className={
+                          favorites.includes(camper.id)
+                            ? `${css.iconFilled}`
+                            : `${css.iconOutline}`
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className={css.rating}>

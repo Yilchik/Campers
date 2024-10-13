@@ -26,7 +26,7 @@ const CatalogPage = () => {
 
   const {
     items: campers = [],
-    favorites,
+    favorites: favoriteCampers = [],
     filters,
     status,
   } = useSelector((state) => state.campers || {});
@@ -94,6 +94,29 @@ const CatalogPage = () => {
       }
     });
   }, [localFilters]);
+
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(savedFavorites);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const toggleFavorite = (id) => {
+    if (favorites.includes(id)) {
+      setFavorites(favorites.filter((favId) => favId !== id));
+    } else {
+      setFavorites([...favorites, id]);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(fetchCampers(filters));
+  }, [filters, dispatch]);
 
   if (status === "loading") return <Loader />;
   if (status === "failed")
@@ -252,7 +275,11 @@ const CatalogPage = () => {
             Search
           </button>
         </div>
-        <CampersList campers={campers.items || []} />
+        <CampersList
+          campers={campers.items || []}
+          favorites={favorites}
+          toggleFavorite={toggleFavorite}
+        />
       </div>
     </div>
   );

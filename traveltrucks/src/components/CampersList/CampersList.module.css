@@ -103,3 +103,13 @@
   width: 166px;
   padding: 16px 16px;
 }
+
+.iconFilled {
+  color: #e44848;
+  transition: color 0.3s;
+}
+
+.iconOutline {
+  color: #475467;
+  transition: color 0.3s;
+}
