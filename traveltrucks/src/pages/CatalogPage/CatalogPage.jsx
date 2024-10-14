@@ -76,8 +76,6 @@ const CatalogPage = () => {
         obj[key] = localFilters[key] === true ? 1 : localFilters[key];
         return obj;
       }, {});
-
-    console.log("Cleaned Filters:", cleanedFilters);
     dispatch(setFilters(cleanedFilters));
     dispatch(fetchCampers(cleanedFilters));
   };
