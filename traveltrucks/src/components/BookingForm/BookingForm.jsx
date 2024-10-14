@@ -26,7 +26,6 @@ const BookingForm = () => {
     }),
     onSubmit: (values, { resetForm }) => {
       if (formik.isValid) {
-        console.log("Form Data:", values);
         toast.success("Booking successful!");
         resetForm();
         setBookingDate(null);
