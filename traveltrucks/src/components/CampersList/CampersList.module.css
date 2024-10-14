@@ -11,8 +11,8 @@
   align-items: flex-start;
   gap: 24px;
   border-radius: 20px;
-  border: 1px solid var(--Gray-light, #dadde1);
-  background: var(--White, #fff);
+  border: 1px solid #dadde1;
+  background: #fff;
 }
 
 .photo {

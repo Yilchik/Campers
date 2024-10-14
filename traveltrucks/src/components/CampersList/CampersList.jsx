@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import css from "./CampersList.module.css";
@@ -28,7 +28,6 @@ import { MdOutlineWater } from "react-icons/md";
 
 const CampersList = ({ campers, favorites, toggleFavorite }) => {
   const [loading, setLoading] = useState(false);
-  const location = useLocation();
   const [visibleCount, setVisibleCount] = useState(4);
 
   useEffect(() => {
@@ -189,6 +188,8 @@ const CampersList = ({ campers, favorites, toggleFavorite }) => {
 };
 CampersList.propTypes = {
   campers: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
 };
 
 export default CampersList;

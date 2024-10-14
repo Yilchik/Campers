@@ -1,6 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+axios.defaults.baseURL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers";
+
 export const fetchCampers = createAsyncThunk(
   "campers/fetchCampers",
   async (filters) => {
@@ -20,10 +22,19 @@ export const fetchCampers = createAsyncThunk(
 
     const query = new URLSearchParams(filteredParams).toString();
 
-    const response = await axios.get(
-      `https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers?${query}`
-    );
+    const response = await axios.get(`?${query}`);
     console.log("API Response:", response.data);
     return response.data;
   }
 );
+
+export const getCamperDetails = async (id) => {
+  try {
+    const response = await axios.get(`/${id}`);
+    console.log("Camper data:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching camper details:", error);
+    return null;
+  }
+};
