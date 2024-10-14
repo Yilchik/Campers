@@ -4,6 +4,7 @@ import { HiOutlineMap } from "react-icons/hi";
 import css from "./CamperCard.module.css";
 import { useParams } from "react-router-dom";
 import { getCamperDetails } from "../../redux/operations";
+import Loader from "../Loader/Loader";
 
 const CamperCard = () => {
   const [camper, setCamper] = useState(null);
@@ -16,7 +17,7 @@ const CamperCard = () => {
   }, [id]);
 
   if (!camper) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   return (
     <div className={css.container}>
