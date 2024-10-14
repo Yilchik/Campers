@@ -4,6 +4,7 @@ import css from "./DetailsPage.module.css";
 import { useParams } from "react-router-dom";
 import { getCamperDetails } from "../../redux/operations";
 import CamperCard from "../../components/CamperCard/CamperCard";
+import Features from "../../components/Features/Features";
 
 const DetailsPage = () => {
   const [camper, setCamper] = useState(null);
@@ -24,22 +25,7 @@ const DetailsPage = () => {
       <div className={css.container}>
         <div>
           <CamperCard />
-          <h3>Features</h3>
-          <ul>
-            {camper.transmission && (
-              <li>Transmission: {camper.transmission}</li>
-            )}
-            {camper.engine && <li>Engine: {camper.engine}</li>}
-            {camper.AC && <li>AC: Yes</li>}
-            {camper.bathroom && <li>Bathroom: Yes</li>}
-            {camper.kitchen && <li>Kitchen: Yes</li>}
-            {camper.TV && <li>TV: Yes</li>}
-            {camper.radio && <li>Radio: Yes</li>}
-            {camper.refrigerator && <li>Refrigerator: Yes</li>}
-            {camper.microwave && <li>Microwave: Yes</li>}
-            {camper.gas && <li>Gas: Yes</li>}
-            {camper.water && <li>Water: Yes</li>}
-          </ul>
+          <Features />
         </div>
         <div>
           <h3>Vehicle Details</h3>

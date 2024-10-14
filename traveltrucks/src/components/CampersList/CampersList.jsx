@@ -6,25 +6,10 @@ import css from "./CampersList.module.css";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import Loader from "../Loader/Loader";
 
-import {
-  BsCupHot,
-  BsDiagram3,
-  BsDroplet,
-  BsGrid1X2,
-  BsGrid3X3Gap,
-  BsSuitHeart,
-  BsUiRadios,
-} from "react-icons/bs";
-import { TbGasStation } from "react-icons/tb";
+import { BsSuitHeart } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { HiOutlineMap } from "react-icons/hi";
-import { FiWind } from "react-icons/fi";
-import { HiOutlineTv } from "react-icons/hi2";
-import { IoGridOutline } from "react-icons/io5";
-import { LuMicrowave } from "react-icons/lu";
-import { CgSmartHomeRefrigerator } from "react-icons/cg";
-import { PiGasCanThin } from "react-icons/pi";
-import { MdOutlineWater } from "react-icons/md";
+import Badges from "../Badges/Badges";
 
 const CampersList = ({ campers, favorites, toggleFavorite }) => {
   const [loading, setLoading] = useState(false);
@@ -43,12 +28,6 @@ const CampersList = ({ campers, favorites, toggleFavorite }) => {
   if (!Array.isArray(campers) || campers.length === 0) {
     return <div>No campers found.</div>;
   }
-
-  const formIcons = {
-    panelTruck: <BsGrid1X2 className={css.iconBadge} />,
-    fullyIntegrated: <IoGridOutline className={css.iconBadge} />,
-    alcove: <BsGrid3X3Gap className={css.iconBadge} />,
-  };
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 4);
@@ -99,80 +78,7 @@ const CampersList = ({ campers, favorites, toggleFavorite }) => {
                 </div>
               </div>
               <p className={css.description}>{camper.description}</p>
-              <div className={css.badges}>
-                {camper.transmission && (
-                  <div className={css.badge}>
-                    <BsDiagram3 className={css.icon} />
-                    <p className={css.textBtn}>{camper.transmission}</p>
-                  </div>
-                )}
-                {camper.ac && (
-                  <div className={css.badge}>
-                    <FiWind className={css.icon} />
-                    <p className={css.textBtn}>AC</p>
-                  </div>
-                )}
-                {camper.kitchen && (
-                  <div className={css.badge}>
-                    <BsCupHot className={css.iconBadge} />
-                    <p className={css.textBtn}>Kitchen</p>
-                  </div>
-                )}
-                {camper.bathroom && (
-                  <div className={css.badge}>
-                    <BsDroplet className={css.iconBadge} />
-                    <p className={css.textBtn}>Bathroom</p>
-                  </div>
-                )}
-                {camper.tv && (
-                  <div className={css.badge}>
-                    <HiOutlineTv className={css.iconBadge} />
-                    <p className={css.textBtn}>TV</p>
-                  </div>
-                )}
-                {camper.radio && (
-                  <div className={css.badge}>
-                    <BsUiRadios className={css.iconBadge} />
-                    <p className={css.textBtn}>Radio</p>
-                  </div>
-                )}
-                {camper.form && (
-                  <div className={css.badge}>
-                    {formIcons[camper.form]}
-                    <p className={css.textBtn}>{camper.form}</p>
-                  </div>
-                )}
-                {camper.microwave && (
-                  <div className={css.badge}>
-                    <LuMicrowave className={css.iconBadge} />
-                    <p className={css.textBtn}>Microwave</p>
-                  </div>
-                )}
-                {camper.engine && (
-                  <div className={css.badge}>
-                    <TbGasStation className={css.iconBadge} />
-                    <p className={css.textBtn}>{camper.engine}</p>
-                  </div>
-                )}
-                {camper.refrigerator && (
-                  <div className={css.badge}>
-                    <CgSmartHomeRefrigerator className={css.iconBadge} />
-                    <p className={css.textBtn}>Refrigerator</p>
-                  </div>
-                )}
-                {camper.gas && (
-                  <div className={css.badge}>
-                    <PiGasCanThin className={css.iconBadge} />
-                    <p className={css.textBtn}>Gas</p>
-                  </div>
-                )}
-                {camper.water && (
-                  <div className={css.badge}>
-                    <MdOutlineWater className={css.iconBadge} />
-                    <p className={css.textBtn}>Water</p>
-                  </div>
-                )}
-              </div>
+              <Badges camper={camper} />
               <Link to={`/catalog/${camper.id}`}>
                 <button className={css.showMoreBtn}>Show more</button>
               </Link>
