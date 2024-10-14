@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { getCamperDetails } from "../../redux/operations";
+import Loader from "../Loader/Loader";
 
 const Reviews = () => {
   const [camper, setCamper] = useState(null);
@@ -28,7 +29,7 @@ const Reviews = () => {
   };
 
   if (!camper || !camper.reviews) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
