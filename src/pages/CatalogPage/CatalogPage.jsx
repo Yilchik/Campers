@@ -42,7 +42,6 @@ const CatalogPage = () => {
   });
 
   useEffect(() => {
-    console.log("Filters before fetching campers:", filters);
     dispatch(fetchCampers(filters));
   }, [filters, dispatch]);
 

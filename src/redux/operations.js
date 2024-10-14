@@ -23,7 +23,7 @@ export const fetchCampers = createAsyncThunk(
     const query = new URLSearchParams(filteredParams).toString();
 
     const response = await axios.get(`?${query}`);
-    console.log("API Response:", response.data);
+
     return response.data;
   }
 );
@@ -31,7 +31,7 @@ export const fetchCampers = createAsyncThunk(
 export const getCamperDetails = async (id) => {
   try {
     const response = await axios.get(`/${id}`);
-    console.log("Camper data:", response.data);
+
     return response.data;
   } catch (error) {
     console.error("Error fetching camper details:", error);
