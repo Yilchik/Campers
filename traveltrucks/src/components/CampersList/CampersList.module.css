@@ -64,16 +64,12 @@
   height: 16px;
 }
 
-.iconBadge {
-  width: 20px;
-  height: 20px;
-}
-
 .rating {
   display: flex;
   gap: 16px;
   align-items: baseline;
 }
+
 .description {
   display: inline-block;
   white-space: nowrap;
@@ -84,21 +80,6 @@
   box-sizing: border-box;
 }
 
-.badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.badge {
-  display: flex;
-  padding: 12px 18px;
-  align-items: center;
-  gap: 8px;
-  border-radius: 100px;
-  background: #f2f4f7;
-  mix-blend-mode: multiply;
-}
 .showMoreBtn {
   width: 166px;
   padding: 16px 16px;

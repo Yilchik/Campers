@@ -92,6 +92,7 @@ const CampersList = ({ campers, favorites, toggleFavorite }) => {
     </div>
   );
 };
+
 CampersList.propTypes = {
   campers: PropTypes.array.isRequired,
   favorites: PropTypes.array.isRequired,
