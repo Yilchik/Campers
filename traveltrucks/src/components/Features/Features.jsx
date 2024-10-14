@@ -22,6 +22,48 @@ const Features = () => {
   return (
     <div className={css.container}>
       <Badges camper={camper} />
+      <div className={css.equipment}>
+        <h3>Vehicle details</h3>
+        <hr className={css.line} />
+        <ul className={css.details}>
+          <li>
+            <div className={css.detail}>
+              <p>Form</p>
+              <p>{camper.form}</p>
+            </div>
+          </li>
+          <li>
+            <div className={css.detail}>
+              <p>Length</p>
+              <p>{camper.length}</p>
+            </div>
+          </li>
+          <li>
+            <div className={css.detail}>
+              <p>Width</p>
+              <p>{camper.width}</p>
+            </div>
+          </li>
+          <li>
+            <div className={css.detail}>
+              <p>Height</p>
+              <p>{camper.height}</p>
+            </div>
+          </li>
+          <li>
+            <div className={css.detail}>
+              <p>Tank</p>
+              <p>{camper.tank}</p>
+            </div>
+          </li>
+          <li>
+            <div className={css.detail}>
+              <p>Consumption</p>
+              <p>{camper.consumption}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };

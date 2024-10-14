@@ -1,14 +1,19 @@
 import Header from "../../components/Header/Header";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import css from "./DetailsPage.module.css";
-import { useParams } from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getCamperDetails } from "../../redux/operations";
 import CamperCard from "../../components/CamperCard/CamperCard";
-import Features from "../../components/Features/Features";
+import clsx from "clsx";
 
 const DetailsPage = () => {
   const [camper, setCamper] = useState(null);
   const { id } = useParams();
+  const backLinkHref = useRef(location.state || "/");
+
+  const buildLinkClass = ({ isActive }) => {
+    return clsx(css.link, isActive && css.active);
+  };
 
   useEffect(() => {
     if (id) {
@@ -19,28 +24,34 @@ const DetailsPage = () => {
   if (!camper) {
     return <div>Loading...</div>;
   }
+
   return (
     <div>
       <Header />
       <div className={css.container}>
         <div>
           <CamperCard />
-          <Features />
+          <div className={css.additionalInfo}>
+            <NavLink
+              to="features"
+              className={buildLinkClass}
+              state={backLinkHref.current}
+            >
+              Features
+            </NavLink>
+            <NavLink
+              to="reviews"
+              className={buildLinkClass}
+              state={backLinkHref.current}
+            >
+              Reviews
+            </NavLink>
+          </div>
+          <Outlet />
         </div>
-        <div>
-          <h3>Vehicle Details</h3>
-          <p>Form: {camper.form}</p>
-          <p>Width: {camper.width} m</p>
-          <p>Height: {camper.height} m</p>
-          <p>Tank: {camper.tank} l</p>
-          <p>Consumption: {camper.consumption} l/100km</p>
-        </div>
-        <div>
-          <h3>Reviews</h3>
-        </div>
-        <div>
-          <h3>Book your campervan</h3>
-        </div>
+      </div>
+      <div>
+        <h3>Book your campervan</h3>
       </div>
     </div>
   );

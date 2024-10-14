@@ -1,27 +1,35 @@
 .container {
-  display: flexbox;
+  display: flex;
   flex-direction: column;
   width: 631px;
   padding: 44px 80px;
   justify-content: center;
-  align-items: center;
   gap: 100px;
   border-radius: 10px;
   background: #f7f7f7;
 }
 
-.badges {
+.equipment {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.badge {
+.line {
+  border: 1px solid #dadde1;
+  width: 360px;
+  text-align: left;
+  margin: 0;
+}
+
+.details {
   display: flex;
-  padding: 12px 18px;
-  align-items: center;
-  gap: 8px;
-  border-radius: 100px;
-  background: #f2f4f7;
-  mix-blend-mode: multiply;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 16px;
+}
+
+.detail {
+  display: flex;
+  justify-content: space-between;
 }
