@@ -5,6 +5,7 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { getCamperDetails } from "../../redux/operations";
 import CamperCard from "../../components/CamperCard/CamperCard";
 import clsx from "clsx";
+import BookingForm from "../../components/BookingForm/BookingForm";
 
 const DetailsPage = () => {
   const [camper, setCamper] = useState(null);
@@ -29,25 +30,28 @@ const DetailsPage = () => {
     <div>
       <Header />
       <div className={css.container}>
-        <div>
-          <CamperCard />
-          <div className={css.additionalInfo}>
-            <NavLink
-              to="features"
-              className={buildLinkClass}
-              state={backLinkHref.current}
-            >
-              Features
-            </NavLink>
-            <NavLink
-              to="reviews"
-              className={buildLinkClass}
-              state={backLinkHref.current}
-            >
-              Reviews
-            </NavLink>
+        <CamperCard />
+        <div className={css.info}>
+          <div>
+            <div className={css.additionalInfo}>
+              <NavLink
+                to="features"
+                className={buildLinkClass}
+                state={backLinkHref.current}
+              >
+                Features
+              </NavLink>
+              <NavLink
+                to="reviews"
+                className={buildLinkClass}
+                state={backLinkHref.current}
+              >
+                Reviews
+              </NavLink>
+            </div>
+            <Outlet />
           </div>
-          <Outlet />
+          <BookingForm />
         </div>
       </div>
       <div>
