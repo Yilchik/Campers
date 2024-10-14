@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  padding: 48px 64px 52px;
+  gap: 64px;
+}
+
+.form {
+  display: flex;
+  max-width: 360px;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  width: 360px;
+  height: 56px;
+  padding-left: 40px;
+  border-radius: 12px;
+  background: #f7f7f7;
+  border: none;
+  color: #101828;
+  font-size: 16px;
+}
+
+.iconLocation {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.filtersBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.equipment {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.line {
+  border: 1px solid #dadde1;
+  width: 360px;
+  text-align: left;
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filtersBtn {
+  display: flex;
+  flex-direction: column;
+  flex-basis: calc(33.33% - 16px);
+  box-sizing: border-box;
+  min-width: 112px;
+  height: 96px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  border: 1px solid #dadde1;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.checkboxInput:checked + .filtersBtn {
+  border-color: #e44848;
+}
+
+.filtersBtn:hover {
+  border-color: #e44848;
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  color: #6b7280;
+  pointer-events: none;
+}
+
+.textBtn {
+  color: #101828;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  margin: 0;
+}
+
+.btn {
+  width: 166px;
+}

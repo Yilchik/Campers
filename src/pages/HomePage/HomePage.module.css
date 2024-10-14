@@ -1,0 +1,27 @@
+.container {
+  background-image: url("../../assets/background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 696px;
+  padding: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.text {
+  color: #f7f7f7;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.5;
+  margin: 0;
+}

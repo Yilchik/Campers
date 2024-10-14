@@ -1,0 +1,17 @@
+.loadMore {
+  border-radius: 200px;
+  border: 1px solid #dadde1;
+  background: #fff;
+  color: #101828;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.08px;
+  margin: auto;
+  margin-top: 40px;
+}
+
+.loadMore:hover {
+  border: 1px solid #d84343;
+  background: #fff;
+}
