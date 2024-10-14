@@ -54,9 +54,6 @@ const DetailsPage = () => {
           <BookingForm />
         </div>
       </div>
-      <div>
-        <h3>Book your campervan</h3>
-      </div>
     </div>
   );
 };

@@ -13,3 +13,9 @@
   background: #f2f4f7;
   mix-blend-mode: multiply;
 }
+
+.iconBadge {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}

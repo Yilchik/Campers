@@ -17,13 +17,11 @@ import { LuMicrowave } from "react-icons/lu";
 import { CgSmartHomeRefrigerator } from "react-icons/cg";
 import { PiGasCanThin } from "react-icons/pi";
 import { MdOutlineWater } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getCamperDetails } from "../../redux/operations";
+import Loader from "../../components/Loader/Loader";
 
 const Badges = ({ camper }) => {
   if (!camper) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   const formIcons = {
@@ -31,17 +29,18 @@ const Badges = ({ camper }) => {
     fullyIntegrated: <IoGridOutline className={css.iconBadge} />,
     alcove: <BsGrid3X3Gap className={css.iconBadge} />,
   };
+
   return (
     <div className={css.badges}>
       {camper.transmission && (
         <div className={css.badge}>
-          <BsDiagram3 className={css.icon} />
+          <BsDiagram3 className={css.iconBadge} />
           <p className={css.textBtn}>{camper.transmission}</p>
         </div>
       )}
       {camper.ac && (
         <div className={css.badge}>
-          <FiWind className={css.icon} />
+          <FiWind className={css.iconBadge} />
           <p className={css.textBtn}>AC</p>
         </div>
       )}
@@ -108,6 +107,7 @@ const Badges = ({ camper }) => {
     </div>
   );
 };
+
 Badges.propTypes = {
   camper: PropTypes.shape({
     transmission: PropTypes.string,
@@ -122,6 +122,7 @@ Badges.propTypes = {
     refrigerator: PropTypes.bool,
     gas: PropTypes.bool,
     water: PropTypes.bool,
-  }).isRequired, // Оскільки об'єкт camper є обов'язковим пропом
+  }).isRequired,
 };
+
 export default Badges;
