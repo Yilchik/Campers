@@ -4,6 +4,7 @@ import { getCamperDetails } from "../../redux/operations";
 import css from "./Features.module.css";
 
 import Badges from "../Badges/Badges";
+import Loader from "../Loader/Loader";
 
 const Features = () => {
   const [camper, setCamper] = useState(null);
@@ -16,7 +17,7 @@ const Features = () => {
   }, [id]);
 
   if (!camper) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
