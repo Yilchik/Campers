@@ -6,6 +6,7 @@ import { getCamperDetails } from "../../redux/operations";
 import CamperCard from "../../components/CamperCard/CamperCard";
 import clsx from "clsx";
 import BookingForm from "../../components/BookingForm/BookingForm";
+import Loader from "../../components/Loader/Loader";
 
 const DetailsPage = () => {
   const [camper, setCamper] = useState(null);
@@ -23,7 +24,7 @@ const DetailsPage = () => {
   }, [id]);
 
   if (!camper) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   return (
