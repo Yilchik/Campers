@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -16,14 +20,15 @@
 a {
   text-decoration: inherit;
 }
+
 a:hover {
   color: #ffc531;
 }
 
 body {
   margin: 0;
-  place-items: center;
   min-width: 1440px;
+  width: 100%;
   min-height: 100vh;
 }
 

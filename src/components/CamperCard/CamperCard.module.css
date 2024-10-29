@@ -46,7 +46,7 @@
 
 .gallery {
   display: flex;
-  justify-content: space-evenly;
+  gap: 24px;
   align-items: flex-start;
 }
 
